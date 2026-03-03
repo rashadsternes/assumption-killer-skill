@@ -38,6 +38,8 @@ Install with one command:
 npx skills add rashadsternes/assumption-killer
 ```
 
+*Tip: run this in your terminal. The installer will ask one confirmation question.*
+
 Or clone directly if you want to inspect the source before running:
 
 ```bash
