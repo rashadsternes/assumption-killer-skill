@@ -26,6 +26,22 @@ The difference is enormous. An audit produces vague observations. A verification
 | **Parallel subagents for depth** | Each flow gets its own investigation agent with a narrow, specific question to answer. This is what enables exhaustive verification without running out of context or cutting corners. |
 | **Agents produce files, not context** | Subagents write findings to dedicated temp files instead of returning results in-context. The main context stays thin — it dispatches, monitors, and presents. This prevents context overflow when running many parallel agents on large codebases. Pre-extracting focused code sections into files before verification further reduces per-agent context consumption. |
 
+## The three categories of finding
+
+Not everything this workflow surfaces is a bug. Understanding the three categories is what makes the results useful rather than overwhelming.
+
+**Bug** — the code is wrong. A function does the wrong thing, a validation is missing, a race condition exists. This is what most people expect to find.
+
+**Wrong assumption** — the code is fine, but your mental model was off. You thought something was missing or broken. It wasn't. These are humbling but useful — they tell you where your understanding of the system has drifted from reality.
+
+**Intent drift** — the code is technically correct but no longer matches what you actually wanted. It doesn't throw an error. Tests pass. The feature works. But somewhere between what you described to the AI and what got built, something slipped. Maybe you phrased a requirement imprecisely and the AI made a reasonable interpretation that wasn't quite right. Maybe the AI added something that seemed helpful in context and you accepted it without fully vetting it.
+
+Intent drift is the hardest category to catch because there's nothing broken to point at. The code does exactly what it was told — just not what you meant. The only way to surface it is the teach-back: reading your system described back to you as a product, not as code. When the system explains what it does in plain terms, you react as a user or business owner would, and the mismatch becomes visible in a way it never is when you're reading the implementation directly.
+
+This category is unique to AI-assisted development. When you write every line yourself, your intent and the code stay in sync by default. When an AI writes the code, that sync isn't guaranteed — and it degrades silently.
+
+---
+
 ## What makes it different
 
 | Approach | What it catches | What it misses |
@@ -78,4 +94,4 @@ This skill is intentionally token-heavy. The depth is the point.
 - **Verify** also uses parallel subagents, one per flow or assumption group. Each agent traces full execution paths including error handling.
 - A codebase with 10 flows might spawn 10+ subagent investigations across both steps.
 
-The tradeoff is explicit: shallow analysis is cheap but misses bugs. This workflow found 2 bugs and corrected 3 assumptions in its first use on a production codebase. The token cost paid for itself in prevented customer-facing issues.
+The tradeoff is explicit: shallow analysis is cheap but misses bugs. In practice, most codebases surface more findings than expected — not because the code is bad, but because intent and implementation drift quietly over time. The token cost pays for itself in prevented customer-facing issues.

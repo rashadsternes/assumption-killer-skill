@@ -1,6 +1,6 @@
 ---
 name: the-assumption-killer
-description: "Verifies that AI-generated code or large codebases behave as intended. Surfaces gaps between business intent and actual implementation by generating falsifiable assumptions about customer flows and system behavior, then proving or disproving each against the code."
+description: "Kills the untested assumptions in your codebase. Surfaces beliefs about how the system works that have never been verified against actual code, from critical gaps in business logic to subtle intent drift. Use when you're not sure if what Claude built matches what you meant, before launch, before a major integration, or after inheriting a codebase."
 disable-model-invocation: true
 argument-hint: "[generate|verify|fix]"
 ---

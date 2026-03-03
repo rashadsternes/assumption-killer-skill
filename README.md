@@ -1,5 +1,7 @@
 # The Assumption Killer
 
+> **Upcoming change:** The slash command is changing from `/the-assumption-killer` to `/assumption-killer`. If you cloned this skill, pull the latest version and the command updates automatically.
+
 A Claude Code skill that verifies AI-generated code and large codebases behave as intended.
 
 AI writes code that runs. It passes linters, compiles, even handles edge cases. But "runs correctly" and "does what the business needs" are different things. This skill makes beliefs about your code explicit, then tests each one against the actual implementation.
@@ -13,7 +15,7 @@ AI writes code that runs. It passes linters, compiles, even handles edge cases. 
 | Automated tests | Regressions in tested paths | Untested assumptions |
 | **The Assumption Killer** | Logic gaps, missing validation, intent vs implementation mismatches | Nothing it's pointed at |
 
-In its first use on a production codebase, it found **2 bugs** and corrected **3 wrong assumptions** in a single pass.
+From vibe coded side projects to production apps, it finds things ranging from critical bugs that would have reached real users to subtle ones you never would have thought to look for.
 
 ## Install
 
